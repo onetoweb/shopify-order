@@ -163,6 +163,10 @@ class Client
     {
         if (isset($json['errors'])) {
             
+            if (is_string($json['errors'])) {
+                throw new JsonException($json['errors']);
+            }
+            
             $exception = null;
             $previous = null;
             foreach ($json['errors'] as $error) {
